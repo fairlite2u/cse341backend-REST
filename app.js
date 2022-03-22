@@ -59,9 +59,17 @@ app.use((error, req, res, next) => {
 
 mongoose
 .connect(
-    'mongodb+srv://fairlite2u:IwCkoYwYlPCNr7PW@cluster0.299mx.mongodb.net/messages'
+    `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.299mx.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`
   )
   .then(result => {
-    app.listen(8080);
+    const server = app.listen(process.env.PORT || 8080);
+    const io = require('./socket').init(server, {
+      cors: {
+        origin: "*"
+      }
+    });
+    io.on('connection', socket => {
+      console.log('Client connected');
+    });
   })
   .catch(err => console.log(err));

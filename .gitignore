@@ -1,2 +1,4 @@
 node_modules
 connections.txt
+.env
+nodemon.json
