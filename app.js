@@ -59,7 +59,7 @@ app.use((error, req, res, next) => {
 
 mongoose
 .connect(
-    `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.299mx.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}`
+    `mongodb+srv://fairlite2u:IwCkoYwYlPCNr7PW@cluster0.299mx.mongodb.net/messages?`
   )
   .then(result => {
     const server = app.listen(process.env.PORT || 8080);
